@@ -1,6 +1,6 @@
 name: HalloweenCountdown
-version: 1.0.0
+version: 2.0.0
 main: com.unbound.halloween.Main
-api-version: '1.20'
+api-version: '1.21'
 author: Nate
-description: Displays a Halloween event countdown on the action bar and loops spooky background audio.
+description: Actionbar countdown to Halloween Event and repeating spooky background audio.
