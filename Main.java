@@ -38,20 +38,18 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onEnable() {
-        getLogger().info("HalloweenCountdown v3.0 successfully loaded!");
+        getLogger().info("HalloweenCountdown v3.0.1 successfully loaded!");
         
-        // Register events and commands
         getServer().getPluginManager().registerEvents(this, this);
         if (getCommand("timer") != null) {
             getCommand("timer").setExecutor(this);
         }
 
-        // Enable for all currently online players upon reload/startup
         for (Player player : Bukkit.getOnlinePlayers()) {
             enabledPlayers.add(player.getUniqueId());
         }
 
-        // 1. Actionbar Countdown Task (Runs every second / 20 ticks)
+        // Actionbar Countdown Task
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -89,7 +87,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             }
         }.runTaskTimer(this, 0L, 20L);
 
-        // 2. Spooky Multi-Track Sound Loop Task (Plays rotating spooky audio every 18 seconds)
+        // Spooky Music Loop Task
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -110,7 +108,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        // Automatically ON by default when joining
         UUID uuid = event.getPlayer().getUniqueId();
         enabledPlayers.add(uuid);
         event.getPlayer().sendMessage(Component.text("§c[Halloween] §eCountdown & spooky music enabled! Type §b/timer off §eto disable."));
